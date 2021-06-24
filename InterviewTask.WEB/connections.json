@@ -1,0 +1,5 @@
+﻿{
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source=DESKTOP-VM8NGB3\\SQLEXPRESS;Database=InterviwTestDB;Trusted_Connection=True;"
+  }
+}
