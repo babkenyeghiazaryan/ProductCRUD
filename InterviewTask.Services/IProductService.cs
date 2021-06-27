@@ -13,7 +13,7 @@ namespace InterviewTask.Services
     public interface IProductService
     {
         Task<IEnumerable<Product>> GetAllProducts(Pagination pagination, Filter filter);
-        
 
+        Task<Product> GetProductById(long Id);
     }
 }

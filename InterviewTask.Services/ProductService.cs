@@ -30,5 +30,13 @@ namespace InterviewTask.Services
 
             return _products;
         }
+
+        public async Task<Product> GetProductById(long Id)
+        {
+
+            var _product = await unitOfWork.ProductRepository.Get(Id);
+
+            return _product;
+        }
     }
 }

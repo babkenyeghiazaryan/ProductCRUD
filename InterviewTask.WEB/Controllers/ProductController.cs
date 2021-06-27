@@ -9,6 +9,7 @@ using AutoMapper;
 using InterviewTask.Data;
 using InterviewTask.Data.Entities;
 using InterviewTask.Data.Paging;
+using InterviewTask.Models;
 using InterviewTask.Models.Paging;
 using InterviewTask.Models.Product;
 using InterviewTask.Models.ProductRequest;
@@ -24,11 +25,11 @@ namespace InterviewTask.WEB.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : BaseController
+    public class ProductController : BaseController
     {
         private readonly IProductService productsService;
         private readonly IMapper mapper;
-        public ProductsController(
+        public ProductController(
             IUnitOfWork unitOfWork,
             IProductService productsService,
             IMapper mapper) : base(unitOfWork)
@@ -54,6 +55,15 @@ namespace InterviewTask.WEB.Controllers
                 filtering = requestModel.filter
             };
             return Ok(responseModel);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<ActionResult<ProductDetails>> GetProduct(int productId)
+        {
+            var product = await productsService.GetProductById(productId);
+            var mappedProduct = mapper.Map<Product, ProductDetails>(product);
+            return Ok(mappedProduct);
         }
     }
 }
