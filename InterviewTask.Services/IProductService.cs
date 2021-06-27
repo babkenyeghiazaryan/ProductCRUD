@@ -15,5 +15,9 @@ namespace InterviewTask.Services
         Task<IEnumerable<Product>> GetAllProducts(Pagination pagination, Filter filter);
 
         Task<Product> GetProductById(long Id);
+
+        Task<Product> CreateNewProduct(Product product);
+
+        Task UpdateProduct(Product product);
     }
 }

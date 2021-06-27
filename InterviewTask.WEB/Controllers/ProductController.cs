@@ -14,6 +14,7 @@ using InterviewTask.Models.Paging;
 using InterviewTask.Models.Product;
 using InterviewTask.Models.ProductRequest;
 using InterviewTask.Models.ProductResponse;
+using InterviewTask.ServiceModels;
 using InterviewTask.Services;
 using InterviewTask.WEB.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -40,6 +41,7 @@ namespace InterviewTask.WEB.Controllers
         }
 
         [HttpPost]
+        [Route("GetProducts")]
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ProductItem>>> GetProducts(ProductRequestModel requestModel)
         {
@@ -58,6 +60,7 @@ namespace InterviewTask.WEB.Controllers
         }
 
         [HttpGet]
+        [Route("GetProduct/{productId}")]
         [AllowAnonymous]
         public async Task<ActionResult<ProductDetails>> GetProduct(int productId)
         {
@@ -65,5 +68,30 @@ namespace InterviewTask.WEB.Controllers
             var mappedProduct = mapper.Map<Product, ProductDetails>(product);
             return Ok(mappedProduct);
         }
+
+
+        [HttpPost]
+        [Route("NewProduct")]
+        public async Task<ActionResult<ProductDetails>> NewProduct(ProductDetails product)
+        {
+            var mapped = mapper.Map<ProductDetails, Product>(product);
+            var newProduct = await productsService.CreateNewProduct(mapped);
+            var mappedCreatedProduct = mapper.Map<Product, ProductDetails>(newProduct);
+
+          
+            return Ok(mappedCreatedProduct);
+        }
+
+        [HttpPut]
+        [Route("UpdateProduct")]
+        public async Task<IActionResult> UpdateProduct(ProductDetails product)
+        {
+            var mapped = mapper.Map<ProductDetails, Product>(product);
+
+            await productsService.UpdateProduct(mapped);
+
+            return Ok();
+        }
+
     }
 }

@@ -38,5 +38,22 @@ namespace InterviewTask.Services
 
             return _product;
         }
+
+        public async Task<Product> CreateNewProduct(Product product)
+        {
+            var _product = await unitOfWork.ProductRepository.Add(product);
+            await unitOfWork.SaveAsync();
+            return _product;
+        }
+
+        public async Task UpdateProduct(Product product)
+        {
+            var _product = await GetProductById(product.Id);
+            if (_product != null)
+            {
+                unitOfWork.ProductRepository.Update(product);
+                await unitOfWork.SaveAsync();
+            }
+        }
     }
 }

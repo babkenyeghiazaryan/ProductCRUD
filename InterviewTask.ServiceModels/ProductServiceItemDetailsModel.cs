@@ -12,7 +12,10 @@ namespace InterviewTask.ServiceModels
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public bool IsAvailable { get; set; }
         public decimal Price { get; set; }
+        public bool Available { get; set; }
+        public string Description { get; set; }
+        public DateTime DateCreatedUTC { get; set; }
+
     }
 }

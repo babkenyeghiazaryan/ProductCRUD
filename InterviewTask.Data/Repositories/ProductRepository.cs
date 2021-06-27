@@ -27,9 +27,9 @@ namespace InterviewTask.Data.Repositories
             return item;
         }
 
-        public void Remove(Product user)
+        public void Remove(Product product)
         {
-            dbContext.Remove(user);
+            dbContext.Remove(product);
         }
 
         public async Task<Product> Get(double id)
@@ -39,53 +39,53 @@ namespace InterviewTask.Data.Repositories
 
         public IQueryable<Product> Get(double[] ids)
         {
-            var usersQuery = dbContext.Products.Where(u => ids.Contains(u.Id));
+            var productsQuery = dbContext.Products.Where(u => ids.Contains(u.Id));
 
-            return usersQuery;
+            return productsQuery;
         }
 
         public IQueryable<Product> GetAll(Pagination pagination, Filter filter)
         {
-            var usersQuery = dbContext.Products as IQueryable<Product>;
+            var productsQuery = dbContext.Products as IQueryable<Product>;
 
             if (filter.Id.HasValue)
-                usersQuery = usersQuery.Where(item => item.Id == filter.Id);
+                productsQuery = productsQuery.Where(item => item.Id == filter.Id);
             if (!string.IsNullOrWhiteSpace(filter.Name))
-                usersQuery = usersQuery.Where(item => item.Name.ToLower().Contains(filter.Name.ToLower()));
+                productsQuery = productsQuery.Where(item => item.Name.ToLower().Contains(filter.Name.ToLower()));
             if (!string.IsNullOrWhiteSpace(filter.Description))
-                usersQuery = usersQuery.Where(item => item.Description.ToLower().Contains(filter.Description.ToLower()));
+                productsQuery = productsQuery.Where(item => item.Description.ToLower().Contains(filter.Description.ToLower()));
             if (filter.PriceStarts.HasValue)
-                usersQuery = usersQuery.Where(item => item.Price >= filter.PriceStarts);
+                productsQuery = productsQuery.Where(item => item.Price >= filter.PriceStarts);
             if (filter.PriceEnds.HasValue)
-                usersQuery = usersQuery.Where(item => item.Price <= filter.PriceEnds);
+                productsQuery = productsQuery.Where(item => item.Price <= filter.PriceEnds);
             if (filter.Available.HasValue)
-                usersQuery = usersQuery.Where(item => item.Available == filter.Available);
+                productsQuery = productsQuery.Where(item => item.Available == filter.Available);
             if (filter.DateCreatedUTCFrom.HasValue)
-                usersQuery = usersQuery.Where(item => item.DateCreatedUTC >= filter.DateCreatedUTCFrom);
+                productsQuery = productsQuery.Where(item => item.DateCreatedUTC >= filter.DateCreatedUTCFrom);
             if (filter.DateCreatedUTCTo.HasValue)
-                usersQuery = usersQuery.Where(item => item.DateCreatedUTC <= filter.DateCreatedUTCTo);
+                productsQuery = productsQuery.Where(item => item.DateCreatedUTC <= filter.DateCreatedUTCTo);
 
             if (pagination != null)
             {
                 //INFO: OrderByDynamic is custom written dynamic order by expression
-                pagination.Count = usersQuery.Count();
+                pagination.Count = productsQuery.Count();
                 if (pagination.Sort.Direction != null && !string.IsNullOrEmpty(pagination.Sort.Member))
                 {
-                    usersQuery = usersQuery.OrderByDynamic(pagination.Sort.Member, pagination.Sort.Direction.Value);
+                    productsQuery = productsQuery.OrderByDynamic(pagination.Sort.Member, pagination.Sort.Direction.Value);
                 }
-                usersQuery = usersQuery.Skip(pagination.Page.Number * pagination.Page.Size).Take(pagination.Page.Size);
+                productsQuery = productsQuery.Skip(pagination.Page.Number * pagination.Page.Size).Take(pagination.Page.Size);
             }
-            return usersQuery;
+            return productsQuery;
         }
 
-        public void RemoveRange(IEnumerable<Product> users)
+        public void RemoveRange(IEnumerable<Product> products)
         {
-            dbContext.RemoveRange(users);
+            dbContext.RemoveRange(products);
         }
 
-        public void Update(Product user)
+        public void Update(Product product)
         {
-            dbContext.Update(user);//Entry(user).State = EntityState.Modified;
+            dbContext.Update(product);//Entry(product).State = EntityState.Modified;
         }
 
         public void UpdateRange(IEnumerable<Product> entities)
