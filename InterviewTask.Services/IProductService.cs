@@ -19,5 +19,6 @@ namespace InterviewTask.Services
         Task<Product> CreateNewProduct(Product product);
 
         Task UpdateProduct(Product product);
+        Task DeleteProduct(long Id);
     }
 }

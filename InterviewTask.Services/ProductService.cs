@@ -55,5 +55,16 @@ namespace InterviewTask.Services
                 await unitOfWork.SaveAsync();
             }
         }
+
+        public async Task DeleteProduct(long Id)
+        {
+            var product = await unitOfWork.ProductRepository.Get(Id);
+            if (product != null)
+            {
+                unitOfWork.ProductRepository.Remove(product);
+                await unitOfWork.SaveAsync();
+            }
+        }
+
     }
 }

@@ -93,5 +93,14 @@ namespace InterviewTask.WEB.Controllers
             return Ok();
         }
 
+
+        [HttpDelete]
+        [Route("DeleteProduct/{Id}")]
+        public async Task<IActionResult> DeleteProduct(long Id)
+        {
+            await productsService.DeleteProduct(Id);
+            return Ok();
+        }
+
     }
 }
