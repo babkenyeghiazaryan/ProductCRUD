@@ -1,6 +1,10 @@
 ﻿using InterviewTask.Data;
 using InterviewTask.Data.Entities;
+using InterviewTask.Data.Paging;
 using InterviewTask.Models;
+using InterviewTask.Models.Filtering;
+using InterviewTask.Models.Paging;
+using InterviewTask.ServiceModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,6 +23,12 @@ namespace InterviewTask.Services
            
         }
 
-      
+        public async Task<IEnumerable<Product>> GetAllProducts(Pagination pagination, Filter filter)
+        {
+
+            var _products = await unitOfWork.ProductRepository.GetAll(pagination, filter).ToListAsync();
+
+            return _products;
+        }
     }
 }

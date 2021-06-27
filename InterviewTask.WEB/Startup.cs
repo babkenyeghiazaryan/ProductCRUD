@@ -74,7 +74,12 @@ namespace InterviewTask.WEB
             });
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+            // mapper
+            services.AddAutoMapper(conf =>
+            {
+                var profilesAssembly = typeof(InterviewTask.Mappings.ProductMapper).Assembly;
+                conf.AddProfiles(profilesAssembly);
+            });
             services.Configure<FormOptions>(options =>
             {
                 options.MultipartBodyLengthLimit = 10000000;

@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using InterviewTask.Data.Paging;
+using InterviewTask.Models.Filtering;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ namespace InterviewTask.Data.Repositories
     {
         Task<TEntity> Get(double id);
         IQueryable<TEntity> Get(double[] ids);
-        IQueryable<TEntity> GetAll();
+        IQueryable<TEntity> GetAll(Pagination pagination, Filter filter);
         Task<TEntity> Add(TEntity entity);
         void Update(TEntity entity);
         void Remove(TEntity entity);
