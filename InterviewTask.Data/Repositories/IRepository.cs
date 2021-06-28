@@ -15,7 +15,7 @@ namespace InterviewTask.Data.Repositories
         IQueryable<TEntity> Get(double[] ids);
         IQueryable<TEntity> GetAll(Pagination pagination, Filter filter);
         Task<TEntity> Add(TEntity entity);
-        void Update(TEntity entity);
-        void Remove(TEntity entity);
+        void Update(TEntity entity, byte[] RowVersion);
+        void Remove(TEntity entity, byte[] RowVersion);
     }
 }

@@ -3,7 +3,6 @@ using InterviewTask.Data.Paging;
 using InterviewTask.Models;
 using InterviewTask.Models.Filtering;
 using InterviewTask.Models.Paging;
-using InterviewTask.ServiceModels;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -18,7 +17,7 @@ namespace InterviewTask.Services
 
         Task<Product> CreateNewProduct(Product product);
 
-        Task UpdateProduct(Product product);
-        Task DeleteProduct(long Id);
+        Task UpdateProduct(Product product, byte[] RowVersion);
+        Task DeleteProduct(long Id, byte[] RowVersion);
     }
 }
