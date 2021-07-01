@@ -1,5 +1,5 @@
 ﻿{
   "ConnectionStrings": {
-    "DefaultConnection": "Data Source=DESKTOP-VM8NGB3\\SQLEXPRESS;Database=InterviwTestDB;Trusted_Connection=True;"
+    "DefaultConnection": "Server=tcp:marktguru.database.windows.net,1433;Initial Catalog=MarktGuruDB;Persist Security Info=False;User ID=byeghiazaryan;Password=Qwaszx111.;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
   }
 }

@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewTask.Mappings", "I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewTask.Models", "InterviewTask.Models\InterviewTask.Models.csproj", "{8FBC0319-97B4-4C99-808C-0D385F94AD68}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewTask.ServiceModels", "InterviewTask.ServiceModels\InterviewTask.ServiceModels.csproj", "{35470E7A-D408-48CA-8851-52F8E1D122CE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{8FBC0319-97B4-4C99-808C-0D385F94AD68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FBC0319-97B4-4C99-808C-0D385F94AD68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FBC0319-97B4-4C99-808C-0D385F94AD68}.Release|Any CPU.Build.0 = Release|Any CPU
-		{35470E7A-D408-48CA-8851-52F8E1D122CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35470E7A-D408-48CA-8851-52F8E1D122CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35470E7A-D408-48CA-8851-52F8E1D122CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35470E7A-D408-48CA-8851-52F8E1D122CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,7 +11,6 @@
   <ItemGroup>
     <ProjectReference Include="..\InterviewTask.Data\InterviewTask.Data.csproj" />
     <ProjectReference Include="..\InterviewTask.Models\InterviewTask.Models.csproj" />
-    <ProjectReference Include="..\InterviewTask.ServiceModels\InterviewTask.ServiceModels.csproj" />
   </ItemGroup>
 
 </Project>

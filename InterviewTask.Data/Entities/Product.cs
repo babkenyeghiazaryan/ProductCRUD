@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace InterviewTask.Data.Entities
@@ -19,6 +20,8 @@ namespace InterviewTask.Data.Entities
         public bool Available { get; set; }
         public string Description { get; set; }
         public DateTime DateCreatedUTC { get; set; }
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 
     internal class ProductConfiguration : IEntityTypeConfiguration<Product>
@@ -27,8 +30,9 @@ namespace InterviewTask.Data.Entities
         {
             builder.ToTable("Product");
             builder.HasKey(k => k.Id);
-
+            builder.Property(p => p.RowVersion).IsConcurrencyToken();
             builder.Property(p => p.Id).ValueGeneratedOnAdd();
+
            
         }
     }

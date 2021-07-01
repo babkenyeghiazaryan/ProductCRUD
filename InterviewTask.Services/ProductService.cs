@@ -4,7 +4,6 @@ using InterviewTask.Data.Paging;
 using InterviewTask.Models;
 using InterviewTask.Models.Filtering;
 using InterviewTask.Models.Paging;
-using InterviewTask.ServiceModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -46,22 +45,22 @@ namespace InterviewTask.Services
             return _product;
         }
 
-        public async Task UpdateProduct(Product product)
+        public async Task UpdateProduct(Product product, byte[] RowVersion)
         {
             var _product = await GetProductById(product.Id);
             if (_product != null)
             {
-                unitOfWork.ProductRepository.Update(product);
+                unitOfWork.ProductRepository.Update(product, RowVersion);
                 await unitOfWork.SaveAsync();
             }
         }
 
-        public async Task DeleteProduct(long Id)
+        public async Task DeleteProduct(long Id, byte[] RowVersion)
         {
             var product = await unitOfWork.ProductRepository.Get(Id);
             if (product != null)
             {
-                unitOfWork.ProductRepository.Remove(product);
+                unitOfWork.ProductRepository.Remove(product, RowVersion);
                 await unitOfWork.SaveAsync();
             }
         }

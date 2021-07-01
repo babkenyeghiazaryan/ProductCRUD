@@ -27,9 +27,13 @@ namespace InterviewTask.Data.Repositories
             return item;
         }
 
-        public void Remove(Product product)
+        public void Remove(Product product, byte[] RowVersion)
         {
+            var entry = dbContext.Entry(product).Property(u => u.RowVersion);
             dbContext.Remove(product);
+
+            dbContext.Entry(product).State = EntityState.Deleted;
+            
         }
 
         public async Task<Product> Get(double id)
@@ -48,7 +52,7 @@ namespace InterviewTask.Data.Repositories
         {
             var productsQuery = dbContext.Products as IQueryable<Product>;
 
-            if (filter.Id.HasValue)
+            if (filter.Id.HasValue && filter.Id!=0)
                 productsQuery = productsQuery.Where(item => item.Id == filter.Id);
             if (!string.IsNullOrWhiteSpace(filter.Name))
                 productsQuery = productsQuery.Where(item => item.Name.ToLower().Contains(filter.Name.ToLower()));
@@ -83,9 +87,12 @@ namespace InterviewTask.Data.Repositories
             dbContext.RemoveRange(products);
         }
 
-        public void Update(Product product)
+        public void Update(Product product, byte[] RowVersion)
         {
-            dbContext.Update(product);//Entry(product).State = EntityState.Modified;
+            var entry  = dbContext.Entry(product).Property(u => u.RowVersion);
+            dbContext.Update(product);
+            dbContext.Entry(product).State = EntityState.Modified;
+           
         }
 
         public void UpdateRange(IEnumerable<Product> entities)

@@ -2,7 +2,6 @@
 using InterviewTask.Data.Entities;
 using InterviewTask.Models;
 using InterviewTask.Models.Product;
-using InterviewTask.ServiceModels;
 using System;
 
 namespace InterviewTask.Mappings
@@ -17,8 +16,7 @@ namespace InterviewTask.Mappings
             CreateMap<Product, ProductItem>();
             CreateMap<ProductItem, Product>();
 
-            CreateMap<ProductDetails, ProductServiceItemDetailsModel>();
-            CreateMap<ProductServiceItemDetailsModel, ProductDetails>();
+            
         }
     }
 }
